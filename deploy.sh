@@ -4,7 +4,16 @@ set -o errexit -o nounset
 
 rev=$(git rev-parse --short HEAD)
 
-cd book
+# assemble the output
+mkdir -p output/{first-edition,second-edition}
+
+cp index.html output/index.html
+
+mv first-edition/book/* output/first-edition/
+mv second-edition/book/* output/second-edition/
+
+# now deploy
+cd output
 
 git init
 git config user.name "Steve Klabnik"
